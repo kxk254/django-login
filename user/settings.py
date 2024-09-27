@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'login',
+    'setting',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "login.User"
 LOGIN_URL = 'user:login'  # URL for login
-LOGIN_REDIRECT_URL = 'user:home'  #redirect after successful login
+LOGIN_REDIRECT_URL = 'setting:home'  #redirect after successful login
 LOGOUT_REDIRECT_URL = 'user:logout'   #redirect after logou
 
 # Email Sending Settings
@@ -143,5 +144,8 @@ DEFAULT_FROM_EMAIL = 'web@soliton-cm.com'
 
 ## Statis file
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "login/static",
+    BASE_DIR / "setting/static",
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"

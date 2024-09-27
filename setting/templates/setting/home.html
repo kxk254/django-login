@@ -1,0 +1,23 @@
+{% extends "setting/layout.html" %}
+
+
+
+{% block body %}
+
+<div id="mainContainer" class="bg-dark text-light">
+    <div class="container">
+        <h2>HOME PAGE HERE</h2>
+        <p>Want to change the password <a href="{% url 'user:password_change' %}">Change PW here.</a></p>  
+        <form method="POST" action="{% url 'user:logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+
+
+        <div class="pb-5"></div>
+    </div>
+</div>
+
+
+
+{% endblock %}

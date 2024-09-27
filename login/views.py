@@ -18,7 +18,7 @@ class CustomLoginView(LoginView):
     template_name = 'login/login.html'
     authentication_form = AuthenticationForm #ログインに使用するフォームを指定
     redirect_authenticated_user = True #ユーザー認証後に自動的に表示させるか
-    success_url = reverse_lazy('user:home') #ログイン成功後に表示させるページ
+    success_url = reverse_lazy('setting:home') #ログイン成功後に表示させるページ
 
     def get_success_url(self):
         return self.success_url
@@ -55,8 +55,9 @@ class CustomLogoutView(LogoutView):
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'login/password_reset_form.html'
     email_template_name = 'login/password_reset_email.html'  #Eメールのテンプレート
-    subject_template_name = 'login/password_reset_subject.txt'  #Eメールのテンプレート
+    subject_template_name = 'login/password_reset_subject.txt'  #Eメール Subject のテンプレート
     success_url = reverse_lazy('user:password_reset_done')  # URL to redirect to after form submission
+    html_email_template_name = 'login/password_reset_email.html'  # Add this for HTML email
 
 # パスワードリセット用のメールを送信した旨のページを表示する
 class CustomPasswordResetDoneView(PasswordResetDoneView):
@@ -80,5 +81,4 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'login/password_reset_complete.html'
 
-def home(request):
-    return render(request, 'login/home.html')
+

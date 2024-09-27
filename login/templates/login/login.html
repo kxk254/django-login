@@ -29,35 +29,5 @@
 </div>
 
 
-<!-- Add the Bootstrap JS and popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
-<!-- Script to toggle between dark and light mode -->
-<script>
-    const toggleButton = document.getElementById('toggleDarkMode');
-    const mainContainer = document.getElementById('mainContainer');
-
-    // Check the saved dark mode preference on page load
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        enableDarkMode();
-    }
-
-    // Toggle dark mode and save the preference in localStorage
-    toggleButton.addEventListener('click', function() {
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            disableDarkMode();
-        } else {
-            enableDarkMode();
-        }
-    });
-
-    toggleButton.addEventListener('click', function() {
-        mainContainer.classList.toggle('bg-dark');
-        mainContainer.classList.toggle('text-light');
-        mainContainer.classList.toggle('bg-light');
-        mainContainer.classList.toggle('text-dark');
-    });
-</script>
 
 {% endblock %}
