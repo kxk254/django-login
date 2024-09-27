@@ -105,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'  #'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -125,5 +125,18 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Substituting a custom User model
+# Configure Authentication Settings
 
 AUTH_USER_MODEL = "login.User"
+LOGIN_URL = 'user:login'  # URL for login
+LOGIN_REDIRECT_URL = 'user:home'  #redirect after successful login
+LOGOUT_REDIRECT_URL = 'user:logout'   #redirect after logou
+
+# Email Sending Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail1028.onamae.ne.jp'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'web@soliton-cm.com'
+EMAIL_HOST_PASSWORD = '!Web2021'
+DEFAULT_FROM_EMAIL = 'web@soliton-cm.com'

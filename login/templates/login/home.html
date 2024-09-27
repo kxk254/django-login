@@ -1,0 +1,13 @@
+{% extends "login/layout.html" %}
+
+{% block body %}
+
+<h2>HOME PAGE HERE</h2>
+<p>Want to change the password <a href="{% url 'user:password_change' %}">Change PW here.</a></p>  
+<form method="POST" action="{% url 'user:logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+
+{% endblock %}
