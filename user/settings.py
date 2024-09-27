@@ -140,3 +140,8 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'web@soliton-cm.com'
 EMAIL_HOST_PASSWORD = '!Web2021'
 DEFAULT_FROM_EMAIL = 'web@soliton-cm.com'
+
+## Statis file
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
