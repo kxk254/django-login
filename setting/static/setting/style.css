@@ -1,0 +1,18 @@
+.maxh {
+    height: 100vh;
+}
+
+#toggleDarkMode {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it's on top of other elements */
+  }
+
+.avatar {
+    width: 30px; /* Set width */
+    height: 30px; /* Set height */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Ensure the image covers the area */
+    border: 1px solid gray; /* Optional: Add a border */
+}

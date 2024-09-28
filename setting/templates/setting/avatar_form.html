@@ -1,0 +1,38 @@
+{% extends "setting/layout.html" %}
+
+{% block body %}
+
+
+<div id="mainContainer" class="bg-dark text-light maxh">
+    <div class="container">
+        <h2 class="pt-5">Upload Avatars</h2>
+        <section class="mt-5">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {# Render form fields with error messages #}
+                {{ form.avatarid.label_tag }}  {# Display the label #}
+                {{ form.avatarid }}  {# Display the input field #}
+                {% if form.avatarid.errors %}
+                    <div class="text-danger">{{ form.avatarid.errors }}</div>  {# Display error messages #}
+                {% endif %}
+
+                {{ form.image.label_tag }}  {# Display the label #}
+                {{ form.image }}  {# Display the file input #}
+                {% if form.image.errors %}
+                    <div class="text-danger">{{ form.image.errors }}</div>  {# Display error messages #}
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary">保存する</button>
+
+            </form>
+        </section> 
+
+        <div>
+            <button id="toggleDarkMode" class="btn btn-sm btn-secondary mt-4 rounded-pill px-3"><i class="bi bi-brightness-high"></i> Mode</button>
+        </div>
+
+        <div class="pb-5"></div>
+    </div>
+</div>
+
+{% endblock %}

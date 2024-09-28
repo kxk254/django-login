@@ -22,28 +22,43 @@
 
 <!-- Script to toggle between dark and light mode -->
 <script>
+    // Define enableDarkMode before calling it
+    function enableDarkMode() {
+        console.log("Enabling dark mode");
+        mainContainer.classList.add('bg-dark', 'text-light');
+        mainContainer.classList.remove('bg-light', 'text-dark');
+        localStorage.setItem('darkMode', 'enabled');
+        console.log("Dark mode set in localStorage: ", localStorage.getItem('darkMode'));
+    }
+
+    function disableDarkMode() {
+        console.log("Disabling dark mode");
+        mainContainer.classList.add('bg-light', 'text-dark');
+        mainContainer.classList.remove('bg-dark', 'text-light');
+        localStorage.setItem('darkMode', 'disabled');
+        console.log("Dark mode set in localStorage: ", localStorage.getItem('darkMode'));
+    }
+
     const toggleButton = document.getElementById('toggleDarkMode');
     const mainContainer = document.getElementById('mainContainer');
 
     // Check the saved dark mode preference on page load
-    if (localStorage.getItem('darkMode') === 'enabled') {
+    const currentMode = localStorage.getItem('darkMode');
+    console.log("Current mode from localStorage: ", currentMode);
+
+    if (currentMode === 'enabled') {
         enableDarkMode();
+    } else {
+        disableDarkMode();
     }
 
-    // Toggle dark mode and save the preference in localStorage
+    // Toggle dark mode when the button is clicked
     toggleButton.addEventListener('click', function() {
         if (localStorage.getItem('darkMode') === 'enabled') {
             disableDarkMode();
         } else {
             enableDarkMode();
         }
-    });
-
-    toggleButton.addEventListener('click', function() {
-        mainContainer.classList.toggle('bg-dark');
-        mainContainer.classList.toggle('text-light');
-        mainContainer.classList.toggle('bg-light');
-        mainContainer.classList.toggle('text-dark');
     });
 </script>
 

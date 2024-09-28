@@ -1,7 +1,7 @@
 {% extends "login/layout.html" %}
 
 {% block body %}
-<div id="mainContainer" class="bg-dark text-light">
+<div id="mainContainer" class="bg-dark text-light maxh">
     <div class="container">
 
         <h2 class="pt-3 mb-3">Login</h2>
@@ -23,7 +23,7 @@
         <p>Forgot the password? <a href="{% url 'user:password_reset' %}"><i class="bi bi-arrow-return-right"></i> Reset here.</a></p> 
 
         <!-- Add a button to toggle between light and dark mode -->
-        <button id="toggleDarkMode" class="btn btn-sm btn-secondary mt-4 rounded-pill px-3">🌓 Mode</button>
+        <button id="toggleDarkMode" class="btn btn-sm btn-secondary mt-4 rounded-pill px-3"><i class="bi bi-brightness-high"></i> Mode</button>
         <div class="pb-5"></div>
     </div>  
 </div>

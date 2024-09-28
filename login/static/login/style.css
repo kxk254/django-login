@@ -1,0 +1,10 @@
+.maxh {
+    height: 100vh;
+}
+
+#toggleDarkMode {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it's on top of other elements */
+  }

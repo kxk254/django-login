@@ -1,14 +1,18 @@
 {% extends "setting/layout.html" %}
 
-
-
 {% block body %}
+
 
 <div id="mainContainer" class="bg-dark text-light maxh">
     <div class="container">
-        <h2 class="pt-5">Login Page</h2>
+        <h2 class="pt-5">Setting Change</h2>
         <section class="mt-5">
-            
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save</button>
+
+            </form>
             <p>Want to change the password <a href="{% url 'user:password_change' %}">Change PW here.</a></p> 
         </section> 
 
@@ -19,7 +23,5 @@
         <div class="pb-5"></div>
     </div>
 </div>
-
-
 
 {% endblock %}

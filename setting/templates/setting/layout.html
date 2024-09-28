@@ -7,59 +7,67 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static '/setting/style.css' %}">
     <title>LOGIN</title>
-
-    <style>
-        .middle {
-            margin: auto;
-        }
-    </style>
-    
+  
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg middle bg-dark" data-bs-theme="dark" id="navbar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Pricing</a>
+            </ul>
+            <div class="navbar-nav ms-auto d-none d-lg-flex d-flex align-items-end">
+                <section class="navbar-nav">
+                    <div class="nav-link align-self-center avatar"> 
+                        {% if user.avatar.image.url %}
+                            <img src="{% static 'media\avatars\AdobeStock_252443785.jpeg' %}" alt="HH Avatar" class="avatar">
+                        {% else %}
+                            <!-- <img src="{% static 'media\avatars\AdobeStock_252443785.jpeg' %}" alt="Default Avatar" class="avatar">  Optional default avatar -->
+                        {% endif %}
+                        <!-- <img src="../../static/setting/images/AdobeStock_506814373.jpeg" alt="Avatar" class="avatar"> -->
+                        <!-- <a class="nav-link align-self-center" href="#" style="border:2px solid gray;border-radius: 60px; height: 30px; width: 30px;"></a> -->
+                      </div>
+                      <span class="nav-link align-self-center" href="#" >Hello {{ user.username }} !</span>
+                      <div class="dropdown">
+                            <a href="#" class="nav-link align-self-center dropdown-toggle" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.2rem;">
+                                <i class="bi bi-gear"></i>
+                            </a>
+                        
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+                                <li><a class="dropdown-item" href="{% url 'setting:setting-update' user.id %}">Settings</a></li>
+                                <li><a class="dropdown-item" href="{% url 'setting:avatar-update' %}">Avatar Setting</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form class="d-flex" method="POST" action="{% url 'user:logout' %}">
+                                        {% csrf_token %}
+                                        <button class="btn" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                      <!-- <a href="{% url 'setting:setting-update' user.id %}" class="nav-link align-self-center" style="font-size: 1.5rem;"><i class="bi bi-gear"></i></a> -->
+                        <!-- <form class="d-flex" method="POST" action="{% url 'user:logout' %}"> -->
+                            <!-- {% csrf_token %} -->
+                        <!-- <button class="btn" type="submit">Logout</button> -->
+                      <!-- </form> -->
+                </section>
             </div>
-            <!-- right side section -->
-            <div class="d-flex ms-auto">
-                <div class="navbar-nav">
 
-                    <div class="nav-item">
-                        <li class="nav-link active" >HELLO USER!</li>
-                    </div>
-                </div>
-                <div>
-                    <form method="POST" action="{% url 'user:logout' %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-link text-light nav-link mt-2">Logout</button>
-                    </form>
-                </div>
-            </div>
+          </div>
+          
         </div>
-    </nav>
+      </nav>
 
 
 
@@ -73,15 +81,40 @@
 
 <!-- Script to toggle between dark and light mode -->
 <script>
-    const toggleButton = document.getElementById('toggleDarkMode');
-    const mainContainer = document.getElementById('mainContainer');
-
-    // Check the saved dark mode preference on page load
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        enableDarkMode();
+    // Define enableDarkMode before calling it
+    function enableDarkMode() {
+        console.log("Enabling dark mode");
+        mainContainer.classList.add('bg-dark', 'text-light');
+        mainContainer.classList.remove('bg-light', 'text-dark');
+        navbar.setAttribute('data-bs-theme', 'dark'); // Set navbar theme to dark
+        localStorage.setItem('darkMode', 'enabled');
+        console.log("Dark mode set in localStorage: ", localStorage.getItem('darkMode'));
     }
 
-    // Toggle dark mode and save the preference in localStorage
+    function disableDarkMode() {
+        console.log("Disabling dark mode");
+        mainContainer.classList.add('bg-light', 'text-dark');
+        mainContainer.classList.remove('bg-dark', 'text-light');
+        navbar.setAttribute('data-bs-theme', ''); // Set navbar theme to light
+        localStorage.setItem('darkMode', 'disabled');
+        console.log("Dark mode set in localStorage: ", localStorage.getItem('darkMode'));
+    }
+
+    const toggleButton = document.getElementById('toggleDarkMode');
+    const mainContainer = document.getElementById('mainContainer');
+    const navbar = document.querySelector('.navbar'); // Select the navbar
+
+    // Check the saved dark mode preference on page load
+    const currentMode = localStorage.getItem('darkMode');
+    console.log("Current mode from localStorage: ", currentMode);
+
+    if (currentMode === 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    // Toggle dark mode when the button is clicked
     toggleButton.addEventListener('click', function() {
         if (localStorage.getItem('darkMode') === 'enabled') {
             disableDarkMode();
@@ -89,20 +122,7 @@
             enableDarkMode();
         }
     });
-
-    toggleButton.addEventListener('click', function() {
-        mainContainer.classList.toggle('bg-dark');
-        mainContainer.classList.toggle('text-light');
-        mainContainer.classList.toggle('bg-light');
-        mainContainer.classList.toggle('text-dark');
-    });
-
 </script>
-
-
-
-
-
 
 
 
