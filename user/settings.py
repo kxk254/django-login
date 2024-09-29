@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'login',
     'setting',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'user.urls'
@@ -153,3 +156,20 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # You can adjust this to your needs
+
+# debug tools 
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+# debug tool barのconfig
+DEBUG_TOOLBAR_CONFIG = {
+    # ツールバーを表示させる
+    "SHOW_TOOLBAR_CALLBACK" : lambda request: False,
+}
+
+# Session Backends: 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'

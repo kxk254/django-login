@@ -23,7 +23,7 @@ class SettingUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'setting/user_form.html'
     success_url = reverse_lazy('setting:home')  # Redirect after successful update
 
-class AvatarUpdateView(FormView):
+class AvatarUpdateView(LoginRequiredMixin, FormView):
     fields = ["avatarid", "image"]
     template_name = 'setting/avatar_form.html'
     form_class = AvatarForm

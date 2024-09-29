@@ -31,7 +31,12 @@ class CustomRegisterView(CreateView):
 
     def form_valid(self, form):
         # You can add custom logic here if needed
+        print("form is valid in VIEW:")  # Log form errors
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        print("Form errors:", form.errors)  # Log form errors
+        return self.render_to_response(self.get_context_data(form=form))
 
 # ログイン後パスワードの変更をする場合に使用する
 class CustomPasswordChangeView(PasswordChangeView):

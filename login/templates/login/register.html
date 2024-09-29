@@ -9,6 +9,15 @@
       <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {% if form.errors %}
+          <div class="errorlist">
+              <ul>
+                  {% for field, errors in form.errors.items %}
+                      <li>{{ field }}: {{ errors|join:", " }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
+      {% endif %}
         <button type="submit" class="submit btn btn-primary mb-3">Register</button>
       </form>
       <p>Already have an account? <a href="{% url 'user:login' %}">Login here</a>.</p>

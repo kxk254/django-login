@@ -29,14 +29,12 @@
             </ul>
             <div class="navbar-nav ms-auto d-none d-lg-flex d-flex align-items-end">
                 <section class="navbar-nav">
-                    <div class="nav-link align-self-center avatar"> 
+                    <div class="nav-link align-self-center">
                         {% if user.avatar.image.url %}
-                            <img src="{% static 'media\avatars\AdobeStock_252443785.jpeg' %}" alt="HH Avatar" class="avatar">
+                            <img src="{{ user.avatar.image.url|slice:'1:' }}" alt="AVA" class="avatar">
                         {% else %}
-                            <!-- <img src="{% static 'media\avatars\AdobeStock_252443785.jpeg' %}" alt="Default Avatar" class="avatar">  Optional default avatar -->
+                            <img src="media\avatars\AdobeStock_252443785.jpeg" alt="Default Avatar" class="avatar">  
                         {% endif %}
-                        <!-- <img src="../../static/setting/images/AdobeStock_506814373.jpeg" alt="Avatar" class="avatar"> -->
-                        <!-- <a class="nav-link align-self-center" href="#" style="border:2px solid gray;border-radius: 60px; height: 30px; width: 30px;"></a> -->
                       </div>
                       <span class="nav-link align-self-center" href="#" >Hello {{ user.username }} !</span>
                       <div class="dropdown">
@@ -46,7 +44,7 @@
                         
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
                                 <li><a class="dropdown-item" href="{% url 'setting:setting-update' user.id %}">Settings</a></li>
-                                <li><a class="dropdown-item" href="{% url 'setting:avatar-update' %}">Avatar Setting</a></li>
+                                <li><a class="dropdown-item" href="{% url 'setting:avatar-update' %}">Avatar Upload</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form class="d-flex" method="POST" action="{% url 'user:logout' %}">
