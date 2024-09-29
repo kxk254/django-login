@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'login',
     'setting',
     'debug_toolbar',
+    'vertical',
 ]
 
 MIDDLEWARE = [
